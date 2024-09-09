@@ -7,9 +7,12 @@ import CommonFooter from '@/components/common/footer/CommonFooter'
 import styles from './styles/index.module.scss'
 import Card from './compoenents/Card'
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { CardDTO } from './types/card'
 
 function index() {
+  const [imgUrls, setImgUrls] = useState([]);
+
   const getDatas = async () => {
     const API_URL  = 'https://api.unsplash.com/search/photos';
     const API_KEY  = '4FEz39z4oEg24Qgmpeows_bhM5EoXBFj9mFuy8FQxUc';
@@ -20,8 +23,11 @@ function index() {
 
     try {
       const res = await axios.get(`${API_URL}?query=${searchValue}&client_id=${API_KEY}&page=${pageValue}&per_page=${PER_PAGE}`);
-
       console.log(res);
+      if( res.status === 200 ){
+        setImgUrls(res.data.results);
+      }
+
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +56,11 @@ function index() {
               </div>
           </div>
           <div className={styles.page__contents__imageBox}>
-            <Card />
+            {
+              imgUrls.map((card: CardDTO) => {
+                return <Card data={card} key={card.id} />
+              })
+            }
           </div>
       </div>
       {/* 공통 푸터 UI 부분 */}
