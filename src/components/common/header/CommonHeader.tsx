@@ -4,13 +4,13 @@ function CommonHeader() {
   return (
     <div className={styles.header}>
         <div className={styles.header__logoBox}>
-            <img src="" alt='' />
+            <img src="src/assets/images/image-logo.png" alt='' className={styles.header__logoBox__logo} />
             <span className={styles.header__logoBox__title}>PhotoSplash</span>
         </div>
         <div className={styles.header__profileBox}>
             <button className={styles.header__profileBox__button}>사진제출</button>
             <button className={styles.header__profileBox__button}>북마크</button>
-            <button className={styles.header__profileBox__userName}>devtoprod | devtoproduction@gmail.com</button>
+            <span className={styles.header__profileBox__userName}>devtoprod | devtoproduction@gmail.com</span>
         </div>
     </div>
   )
