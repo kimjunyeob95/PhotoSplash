@@ -7,7 +7,6 @@ interface Props {
 
 function Card({ data }: Props) {
     const openDialog = () => {
-        console.log(`${data}`);
         console.log(data);
     }
 
